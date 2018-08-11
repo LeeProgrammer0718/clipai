@@ -6,17 +6,24 @@ from flask import request
 from flask import make_response
 
 app = Flask(__name__)
+log = app.logger
 
 @app.route('/webhook',methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
+    try:
+        action = req.get('queryResult').get('action')
+    except AttributeError:
+        return 'json error'
     #print("Request:")
     #print(json.dumps(req,indent=4))
-    res = makeWebhookResult(req)
-    res = json.dumps(res,indent=4)
+    #res = makeWebhookResult(req)
+    #res = json.dumps(res,indent=4)
+    res = 'test'
     #print(res)
-    r = make_response(res)
-    r.headers['Content-Type']= 'application/json'
+    #r = make_response(res)
+    r = make_response(jsonify({'fulfillmentText': res}))
+    #r.headers['Content-Type']= 'application/json'
     return r
 
 def makeWebhookResult(req):
@@ -25,7 +32,7 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     zone = parameters.get("lunch")
-    speech = "급식은낚지덮밥"
+    speech = "급식은 낚지덮밥"
     #print("Respose:")
     #print(speech)
     return {
