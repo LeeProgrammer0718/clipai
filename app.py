@@ -20,7 +20,7 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != 'interest':
+    if req.get("result").get("action") != 'lunch':
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
@@ -33,6 +33,7 @@ def makeWebhookResult(req):
         "displayText":speech,
         "source":"Bank"
     }
+
 if __name__ == '__main__':
     #port  = int(os.getenv('POST',5000))
     app.run()
