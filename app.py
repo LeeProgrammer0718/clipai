@@ -8,9 +8,9 @@ from flask import make_response
 app = Flask(__name__)
 log = app.logger
 
-@app.route('/webhook',methods=['POST'])
+@app.route('/',methods=['POST'])
 def webhook():
-    '''req = request.get_json(silent=True, force=True)
+    req = request.get_json(silent=True, force=True)
     try:
         action = req.get('queryResult').get('action')
     except AttributeError:
@@ -24,8 +24,7 @@ def webhook():
     #r = make_response(res)
     r = make_response(jsonify({'fulfillmentText': res}))
     #r.headers['Content-Type']= 'application/json'
-    '''
-    return 'hello_world'
+    return r
 
 def makeWebhookResult(req):
     if req.get("result").get("action") != 'lunch':
