@@ -15,7 +15,7 @@ def webhook():
     try:
         action = req.get('queryResult').get('action')
     except AttributeError:
-        return 'json error'
+        return log.error('error')
     #print("Request:")
     #print(json.dumps(req,indent=4))
     #res = makeWebhookResult(req)
