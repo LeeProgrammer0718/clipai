@@ -12,23 +12,23 @@ log = app.logger
 @app.route('/',methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
-    try:
+    '''try:
         action = req.get('queryResult').get('action')
     except AttributeError:
-        return log.error('error')
+        return log.error('error')'''
     #print("Request:")
     #print(json.dumps(req,indent=4))
-    #res = makeWebhookResult(req)
-    #res = json.dumps(res,indent=4)
-    res = action
+    res = makeWebhookResult(req)
+    res = json.dumps(res,indent=4)
+    #res = action
     #print(res)
-    #r = make_response(res)
-    r = make_response(jsonify({'fulfillmentText': res}))
-    #r.headers['Content-Type']= 'application/json'
+    r = make_response(res)
+    #r = make_response(jsonify({'fulfillmentText': res}))
+    r.headers['Content-Type']= 'application/json'
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != 'lunch':
+    if req.get("queryResult").get("action") != 'lunch':
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
