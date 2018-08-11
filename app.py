@@ -10,14 +10,14 @@ app = Flask(__name__)
 @app.route('/webhook',method=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
-    print("Request:")
-    print(json.dumps(req,indent=4))
+    #print("Request:")
+    #print(json.dumps(req,indent=4))
     res = makeWebhookResult(req)
     res = json.dumps(res,indent=4)
-    print(res)
+    #print(res)
     r = make_response(res)
     r.headers['Content-Type']= 'application/json'
-    return res
+    return r
 
 def makeWebhookResult(req):
     if req.get("result").get("action") != 'interest':
@@ -26,8 +26,8 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("lunch")
     speech = "급식은"+"낚지덮밥"
-    print("Respose:")
-    print(speech)
+    #print("Respose:")
+    #print(speech)
     return {
         "speech":speech,
         "displayText":speech,
