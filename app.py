@@ -7,11 +7,10 @@ from flask import make_response
 from flask import jsonify
 import requests
 from bs4 import BeautifulSoup
-
+import datetime
 app = Flask(__name__)
-log = app.logger
 
-@app.route('/',methods=['POST'])
+@app.route('/webhook',methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
     '''try:
@@ -29,7 +28,7 @@ def webhook():
     r.headers['Content-Type']= 'application/json'
     return r
 
-def lunchparse(date):
+def lunchparse(date): 
     date = str(date)
     url = "http://pungduck.hs.kr/lunch.view?date="+"2018"+"08"+"14"
     r = requests.get(url)
@@ -62,5 +61,6 @@ def makeWebhookResult(req):
 
 if __name__ == '__main__':
     port  = int(os.getenv('PORT',5000))
+    print(port)
     app.run(debug=True,port=port,host = '0.0.0.0')
     #app.run()    
