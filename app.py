@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 import datetime
 app = Flask(__name__)
 
-@app.route('/webhook',methods=['GET','POST'])
+@app.route('/',methods=['GET'])
 
 def webhook():
     return 'Hello_world'
