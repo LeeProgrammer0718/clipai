@@ -28,7 +28,11 @@ def webhook():
     #r = make_response(jsonify({'fulfillmentText': res}))
         r.headers['Content-Type']= 'application/json'
         return r
-
+def index():
+    if request.method == 'GET':
+        text = """WELCOME to RBG<br>
+        /testing -> red testing<br>"""
+        return text
 def lunchparse(date): 
     date = str(date)
     url = "http://pungduck.hs.kr/lunch.view?date="+"2018"+"08"+"14"
