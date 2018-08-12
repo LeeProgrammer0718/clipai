@@ -14,10 +14,10 @@ app = Flask(__name__)
 def webhook():
     if request.method=='get':
         req = request.get_json(silent=True, force=True)
-    '''try:
-        action = req.get('queryResult').get('action')
-    except AttributeError:
-        return log.error('error')'''
+    #try:
+       # action = req.get('queryResult').get('action')
+    #except AttributeError:
+        #return log.error('error')
     #print("Request:")
     #print(json.dumps(req,indent=4))
         res = makeWebhookResult(req)
