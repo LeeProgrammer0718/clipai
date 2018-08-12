@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 log = app.logger
 
-@app.route('/github',methods=['POST'])
+@app.route('/webhook',methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
     '''try:
@@ -62,5 +62,5 @@ def makeWebhookResult(req):
 
 if __name__ == '__main__':
     #port  = int(os.getenv('PORT',5000))
-   # app.run(debug=True,port=port,host = '0.0.0.0')
-   app.run()    
+    #app.run(debug=True,port=port,host = '0.0.0.0')
+    app.run()    
