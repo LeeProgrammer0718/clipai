@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/webhook',methods=['POST'])
 def webhook():
-    if request.method=='get':
+    if request.method=='GET':
         req = request.get_json(silent=True, force=True)
     #try:
        # action = req.get('queryResult').get('action')
@@ -28,11 +28,7 @@ def webhook():
     #r = make_response(jsonify({'fulfillmentText': res}))
         r.headers['Content-Type']= 'application/json'
         return r
-def index():
-    if request.method == 'GET':
-        text = """WELCOME to RBG<br>
-        /testing -> red testing<br>"""
-        return text
+    
 def lunchparse(date): 
     date = str(date)
     url = "http://pungduck.hs.kr/lunch.view?date="+"2018"+"08"+"14"
@@ -65,7 +61,7 @@ def makeWebhookResult(req):
     }
 
 if __name__ == '__main__':
-    port  = int(os.getenv('PORT',5000))
+    #port  = int(os.getenv('PORT',5000))
     print(port)
-    app.run(debug=True,port=port,host = '0.0.0.0')
+    app.run(debug=True,port=5000,host = '0.0.0.0')
     #app.run()    
