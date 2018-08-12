@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 log = app.logger
 
-@app.route('/webhook',methods=['POST'])
+@app.route('/',methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
     '''try:
