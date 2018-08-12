@@ -11,24 +11,23 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 log = app.logger
 
-@app.route('/webhook',methods=['POST'])
+@app.route('/github',methods=['POST'])
 def webhook():
-    if request.method == 'POST':
-        req = request.get_json(silent=True, force=True)
+    req = request.get_json(silent=True, force=True)
     '''try:
         action = req.get('queryResult').get('action')
     except AttributeError:
         return log.error('error')'''
-        print("Request:")
-        print(json.dumps(req,indent=4))
-        res = makeWebhookResult(req)
-        res = json.dumps(res,indent=4)
-        #res = action
-        print(res)
-        r = make_response(res)
-        #r = make_response(jsonify({'fulfillmentText': res}))
-        r.headers['Content-Type']= 'application/json'
-        return r
+    print("Request:")
+    print(json.dumps(req,indent=4))
+    res = makeWebhookResult(req)
+    res = json.dumps(res,indent=4)
+    #res = action
+    print(res)
+    r = make_response(res)
+    #r = make_response(jsonify({'fulfillmentText': res}))
+    r.headers['Content-Type']= 'application/json'
+    return r
 
 def lunchparse(date):
     date = str(date)
